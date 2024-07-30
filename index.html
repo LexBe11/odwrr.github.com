@@ -43,7 +43,24 @@
     <div id="employees-section" style="display:none;">
         <h2>Employees Only Section</h2>
         <button id="start-train-btn">Start Train</button>
-        <!-- Add more employees-only content here -->
+        <button id="add-train-btn">Add Train</button>
+    </div>
+
+    <!-- Modals -->
+    <div id="modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span id="modal-close-btn" class="close">&times;</span>
+            <h2 id="modal-title">Change Signal</h2>
+            <p id="modal-message">Select the signal color:</p>
+            <div id="modal-signals-menu">
+                <button class="modal-signal-button" data-color="green">Clear (Green)</button>
+                <button class="modal-signal-button" data-color="red">Clear to Stop (Red)</button>
+                <button class="modal-signal-button" data-color="red">Stop (Red)</button>
+                <button class="modal-signal-button" data-color="yellow">Slow (Yellow)</button>
+                <button class="modal-signal-button" data-color="yellow">Clear to Slow Down (Yellow)</button>
+                <button class="modal-signal-button" data-color="yellow">Slow Down (Yellow)</button>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
