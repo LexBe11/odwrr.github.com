@@ -19,9 +19,12 @@
         <div id="switch1" class="switch"></div>
         
         <!-- Signals -->
-        <div id="signal1" class="signal green"></div>
-        <div id="signal2" class="signal red"></div>
+        <div id="signal1" class="signal grey" onclick="openSignalMenu('signal1')"></div>
+        <div id="signal2" class="signal grey" onclick="openSignalMenu('signal2')"></div>
     </div>
+
+    <!-- Button to toggle Employees Only Section -->
+    <button onclick="toggleVisibility()">Employees Only</button>
 
     <!-- Employees Only Section -->
     <div id="employees-only" class="hidden">
@@ -37,28 +40,19 @@
             <button onclick="changeSignal('slow-down')">Slow Down (Yellow)</button>
         </div>
         <button onclick="changeLines()">Change Lines</button>
-        <button onclick="toggleVisibility()">Toggle Visibility</button>
         
         <!-- Train Management Section -->
         <h3>Manage Trains</h3>
-        <form id="train-form">
-            <label for="train-id">Train ID:</label>
-            <input type="text" id="train-id" required>
-            <label for="train-name">Train Name:</label>
-            <input type="text" id="train-name" required>
-            <label for="train-category">Category:</label>
-            <select id="train-category">
-                <option value="intermodal">Intermodal</option>
-                <option value="coal">Coal</option>
-                <option value="grain-hopper">Grain Hopper</option>
-                <option value="box-cars">Box Cars</option>
-                <option value="autorack">Autorack</option>
-            </select>
-            <button type="button" onclick="addTrain()">Add Train</button>
-        </form>
-
-        <h4>Trains</h4>
-        <ul id="train-list"></ul>
+        <input type="text" id="train-id" placeholder="Train ID">
+        <input type="text" id="train-name" placeholder="Train Name">
+        <select id="train-category">
+            <option value="intermodal">Intermodal</option>
+            <option value="coal">Coal</option>
+            <option value="grain-hopper">Grain Hopper</option>
+            <option value="box-cars">Box Cars</option>
+            <option value="autorack">Autorack</option>
+        </select>
+        <button onclick="addTrain()">Add Train</button>
     </div>
 
     <script src="script.js"></script>
