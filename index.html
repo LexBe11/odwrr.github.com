@@ -3,65 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATCS Simulation</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Signal Controls</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #000;
+            color: #fff;
+        }
+        .track-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            border: 2px solid #fff;
+            margin-bottom: 20px;
+        }
+        .track-line {
+            position: absolute;
+            width: 100%;
+            height: 10px;
+            background-color: #666;
+        }
+        .signal-circle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #888;
+            border: 2px solid #fff;
+        }
+        .signal-circle[data-color="green"] {
+            background-color: green;
+        }
+        .signal-circle[data-color="red"] {
+            background-color: red;
+        }
+        .signal-circle[data-color="yellow"] {
+            background-color: yellow;
+        }
+        .signal-position {
+            position: absolute;
+            bottom: 100%;
+            width: 20px;
+            height: 20px;
+        }
+        .track-line1 { top: 50px; }
+        .track-line2 { top: 100px; }
+        .track-line3 { top: 150px; }
+        .signal-position1 { left: 10%; }
+        .signal-position2 { left: 30%; }
+        .signal-position3 { left: 50%; }
+        .signal-position4 { left: 70%; }
+        .signal-position5 { left: 90%; }
+    </style>
 </head>
 <body>
-    <h1>ATCS Simulation</h1>
+    <h1>Signal Controls</h1>
 
-    <!-- Track Container with Diagrams -->
-    <div id="track-container">
-        <!-- Subdivision Diagrams -->
-        <div id="subdivisions">
-            <div id="great-lakes" class="subdivision">
-                <h2>Great Lakes</h2>
-                <div class="track-section">
-                    <div class="track">
-                        <div id="moving-line"></div>
-                    </div>
-                    <div class="crossing" id="crossing-522A">Crossing 522A</div>
-                    <div class="crossing" id="crossing-576.2A">Crossing 576.2A</div>
-                    <div class="crossing" id="crossing-598.9A">Crossing 598.9A</div>
-                </div>
-            </div>
-            <div id="carther" class="subdivision">
-                <h2>Carther</h2>
-                <div class="track-section">
-                    <div class="track">
-                        <div id="moving-line-2"></div>
-                    </div>
-                    <div class="crossing" id="crossing-128B1">Crossing 128B1</div>
-                    <div class="crossing" id="crossing-128B2">Crossing 128B2</div>
-                    <div class="crossing" id="crossing-128B3">Crossing 128B3</div>
-                    <div class="crossing" id="crossing-128B4">Crossing 128B4</div>
-                    <div class="crossing" id="crossing-128B5">Crossing 128B5</div>
-                    <div class="crossing" id="crossing-128B6">Crossing 128B6</div>
-                    <div class="crossing" id="crossing-128B7">Crossing 128B7</div>
-                </div>
-            </div>
-        </div>
+    <!-- Signal Buttons -->
+    <div id="signals-menu">
+        <button class="signal-button" data-signal="clear" data-color="green">Clear (Green)</button>
+        <button class="signal-button" data-signal="clear-to-stop" data-color="red">Clear to Stop (Red)</button>
+        <button class="signal-button" data-signal="stop" data-color="red">Stop (Red)</button>
+        <button class="signal-button" data-signal="slow" data-color="yellow">Slow (Yellow)</button>
+        <button class="signal-button" data-signal="clear-to-slow-down" data-color="yellow">Clear to Slow Down (Yellow)</button>
+        <button class="signal-button" data-signal="slow-down" data-color="yellow">Slow Down (Yellow)</button>
     </div>
 
-    <div id="notifications"></div>
-
-    <!-- Signal and Control Buttons -->
-    <button id="toggle-signals-btn">Change Signals</button>
-    <div id="signals-menu" style="display:none;">
-        <button class="signal-button" data-color="green">Clear (Green)</button>
-        <button class="signal-button" data-color="red">Clear to Stop (Red)</button>
-        <button class="signal-button" data-color="red">Stop (Red)</button>
-        <button class="signal-button" data-color="yellow">Slow (Yellow)</button>
-        <button class="signal-button" data-color="yellow">Clear to Slow Down (Yellow)</button>
-        <button class="signal-button" data-color="yellow">Slow Down (Yellow)</button>
+    <!-- Track Diagram with Signals -->
+    <div class="track-container" id="subdivision1">
+        <div class="track-line track-line1"></div>
+        <div class="signal-circle signal-position signal-position1" data-color="red"></div>
+        <div class="signal-circle signal-position signal-position2" data-color="green"></div>
+        <div class="signal-circle signal-position signal-position3" data-color="yellow"></div>
+        <div class="signal-circle signal-position signal-position4" data-color="green"></div>
+        <div class="signal-circle signal-position signal-position5" data-color="red"></div>
     </div>
 
+    <div class="track-container" id="subdivision2">
+        <div class="track-line track-line2"></div>
+        <div class="signal-circle signal-position signal-position1" data-color="green"></div>
+        <div class="signal-circle signal-position signal-position2" data-color="yellow"></div>
+        <div class="signal-circle signal-position signal-position3" data-color="red"></div>
+        <div class="signal-circle signal-position signal-position4" data-color="green"></div>
+        <div class="signal-circle signal-position signal-position5" data-color="yellow"></div>
+    </div>
+
+    <!-- Control Buttons -->
     <button id="employees-only-btn">Employees Only</button>
     <div id="employees-section" style="display:none;">
         <!-- Add your employees-only content here -->
     </div>
 
-    <button onclick="startTrain()">Start Train</button>
-
+    <!-- Add your JavaScript file here -->
     <script src="script.js"></script>
 </body>
 </html>
