@@ -9,9 +9,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Toggle Employees Only Section
-    document.getElementById('employees-only-btn').addEventListener('click', () => {
-        const employeesSection = document.getElementById('employees-section');
-        employeesSection.style.display = employeesSection.style.display === 'none' ? 'block' : 'none';
+    const employeesOnlyBtn = document.getElementById('employees-only-btn');
+    const employeesSection = document.getElementById('employees-section');
+    employeesOnlyBtn.addEventListener('click', () => {
+        if (employeesSection.style.display === 'none') {
+            employeesSection.style.display = 'block';
+        } else {
+            employeesSection.style.display = 'none';
+        }
+    });
+
+    // Start Train Button
+    const startTrainBtn = document.getElementById('start-train-btn');
+    startTrainBtn.addEventListener('click', () => {
+        alert('Train started!');
+        // Implement train start logic here
     });
 });
 
