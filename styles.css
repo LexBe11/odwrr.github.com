@@ -1,124 +1,47 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #000; /* Black background for the page */
-    color: #fff;
-    margin: 0;
-    padding: 0;
-}
-
-h1 {
+    background-color: black;
+    color: white;
     text-align: center;
-    margin-top: 20px;
-    color: #fff;
 }
 
 .diagram {
-    position: relative;
-    width: 100%;
-    height: 600px; /* Adjust as needed */
-    background-color: #000; /* Black background for the diagram */
-    border: 2px solid #fff; /* White border */
-    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.track, .switch, .signal {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
 }
 
 .track {
-    position: absolute;
-    height: 20px;
-    background-color: red; /* Default color for tracks */
-}
-
-#track1 {
-    width: 100%;
-    top: 150px;
-}
-
-#track2 {
-    width: 80%;
-    top: 250px;
-    left: 10%;
+    background-color: grey;
 }
 
 .switch {
-    width: 40px;
-    height: 40px;
-    background-color: #555;
-    position: absolute;
-    border-radius: 50%;
-    top: 200px;
-    left: 50%;
-    transform: translateX(-50%);
+    background-color: yellow;
 }
 
 .signal {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    position: absolute;
+    background-color: grey;
+    cursor: pointer;
 }
 
 .green {
     background-color: green;
-    top: 100px;
-    left: 90%;
 }
 
 .red {
     background-color: red;
-    top: 200px;
-    left: 90%;
+}
+
+.yellow {
+    background-color: yellow;
 }
 
 .hidden {
     display: none;
-}
-
-#employees-only {
-    margin: 20px;
-    text-align: center;
-}
-
-form {
-    margin: 20px auto;
-    max-width: 300px;
-    text-align: left;
-}
-
-label, select, input, button {
-    display: block;
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-button {
-    margin: 10px 0;
-    padding: 10px;
-    background-color: #555;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #777;
-}
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    background-color: #333;
-    margin: 5px 0;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-#signal-menu {
-    margin-top: 10px;
-}
-
-#signal-menu button {
-    margin: 5px 0;
 }
