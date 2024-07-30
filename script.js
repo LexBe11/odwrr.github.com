@@ -1,7 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const tracks = document.querySelectorAll('.track');
+    const startTrainBtn = document.getElementById('startTrainBtn');
 
     function scheduleTrain() {
+        // Set trains to start every 5 minutes after the first click
         setInterval(() => {
             tracks.forEach(track => {
                 const trains = track.querySelectorAll('.train');
@@ -34,5 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }, (trackWidth / 200) * 1000); // Match the animation duration
     }
 
-    scheduleTrain();
+    // Handle button click to start trains
+    startTrainBtn.addEventListener('click', () => {
+        scheduleTrain();
+    });
 });
