@@ -3,8 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const signalButtons = document.querySelectorAll('.signal-button');
     signalButtons.forEach(button => {
         button.addEventListener('click', () => {
-            const color = button.getAttribute('data-color');
-            updateSignals(color);
+            openSignalModal(button);
         });
     });
 
@@ -22,15 +21,42 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start Train Button
     const startTrainBtn = document.getElementById('start-train-btn');
     startTrainBtn.addEventListener('click', () => {
-        alert('Train started!');
-        // Implement train start logic here
+        const track = prompt('Enter the track number:');
+        const type = prompt('Enter the train type (intermodal, coal, grain hopper, etc.):');
+        const id = prompt('Enter the train ID:');
+        if (track && type && id) {
+            alert(`Train Started:\nTrack: ${track}\nType: ${type}\nID: ${id}`);
+            // Implement train start logic here
+        }
+    });
+
+    // Add Train Button
+    const addTrainBtn = document.getElementById('add-train-btn');
+    addTrainBtn.addEventListener('click', () => {
+        const id = prompt('Enter the train ID:');
+        if (id) {
+            alert(`Train Added with ID: ${id}`);
+            // Implement add train logic here
+        }
+    });
+
+    // Modal Close Handling
+    const modalCloseBtn = document.getElementById('modal-close-btn');
+    modalCloseBtn.addEventListener('click', () => {
+        closeSignalModal();
+    });
+
+    // Modal Signal Button Handling
+    const modalSignalButtons = document.querySelectorAll('.modal-signal-button');
+    modalSignalButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const color = button.getAttribute('data-color');
+            updateSignals(color);
+            closeSignalModal();
+        });
     });
 });
 
-function updateSignals(color) {
-    // Get all signal circles
-    const signalCircles = document.querySelectorAll('.signal-circle');
-    signalCircles.forEach(circle => {
-        circle.style.backgroundColor = color;
-    });
-}
+function openSignalModal(button) {
+    const color = button.getAttribute('data-color');
+    document.getElementById('modal').style.display = 'flex';
