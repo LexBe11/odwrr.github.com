@@ -3,66 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signal Controls</title>
+    <title>Train Simulation</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Signal Controls</h1>
-
-    <!-- Signal Buttons -->
-    <div id="signals-menu">
-        <button class="signal-button" data-color="green">Clear (Green)</button>
-        <button class="signal-button" data-color="red">Clear to Stop (Red)</button>
-        <button class="signal-button" data-color="red">Stop (Red)</button>
-        <button class="signal-button" data-color="yellow">Slow (Yellow)</button>
-        <button class="signal-button" data-color="yellow">Clear to Slow Down (Yellow)</button>
-        <button class="signal-button" data-color="yellow">Slow Down (Yellow)</button>
+    <div class="track" id="track1">
+        <div class="train" id="train1"></div>
+        <div class="train" id="train2"></div>
     </div>
-
-    <!-- Track Diagram with Signals -->
-    <div class="track-container" id="subdivision1">
-        <div class="track-line track-line1"></div>
-        <div class="signal-circle signal-position signal-position1" data-color="red"></div>
-        <div class="signal-circle signal-position signal-position2" data-color="green"></div>
-        <div class="signal-circle signal-position signal-position3" data-color="yellow"></div>
-        <div class="signal-circle signal-position signal-position4" data-color="green"></div>
-        <div class="signal-circle signal-position signal-position5" data-color="red"></div>
+    <div class="track" id="track2">
+        <div class="train" id="train3"></div>
+        <div class="train" id="train4"></div>
     </div>
-
-    <div class="track-container" id="subdivision2">
-        <div class="track-line track-line2"></div>
-        <div class="signal-circle signal-position signal-position1" data-color="green"></div>
-        <div class="signal-circle signal-position signal-position2" data-color="yellow"></div>
-        <div class="signal-circle signal-position signal-position3" data-color="red"></div>
-        <div class="signal-circle signal-position signal-position4" data-color="green"></div>
-        <div class="signal-circle signal-position signal-position5" data-color="yellow"></div>
-    </div>
-
-    <!-- Control Buttons -->
-    <button id="employees-only-btn">Employees Only</button>
-    <div id="employees-section" style="display:none;">
-        <h2>Employees Only Section</h2>
-        <button id="start-train-btn">Start Train</button>
-        <button id="add-train-btn">Add Train</button>
-    </div>
-
-    <!-- Modals -->
-    <div id="modal" class="modal" style="display:none;">
-        <div class="modal-content">
-            <span id="modal-close-btn" class="close">&times;</span>
-            <h2 id="modal-title">Change Signal</h2>
-            <p id="modal-message">Select the signal color:</p>
-            <div id="modal-signals-menu">
-                <button class="modal-signal-button" data-color="green">Clear (Green)</button>
-                <button class="modal-signal-button" data-color="red">Clear to Stop (Red)</button>
-                <button class="modal-signal-button" data-color="red">Stop (Red)</button>
-                <button class="modal-signal-button" data-color="yellow">Slow (Yellow)</button>
-                <button class="modal-signal-button" data-color="yellow">Clear to Slow Down (Yellow)</button>
-                <button class="modal-signal-button" data-color="yellow">Slow Down (Yellow)</button>
-            </div>
-        </div>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>
