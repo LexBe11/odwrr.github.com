@@ -1,62 +1,38 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Signal Button Handling
-    const signalButtons = document.querySelectorAll('.signal-button');
-    signalButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            openSignalModal(button);
-        });
-    });
+    const tracks = document.querySelectorAll('.track');
 
-    // Toggle Employees Only Section
-    const employeesOnlyBtn = document.getElementById('employees-only-btn');
-    const employeesSection = document.getElementById('employees-section');
-    employeesOnlyBtn.addEventListener('click', () => {
-        if (employeesSection.style.display === 'none') {
-            employeesSection.style.display = 'block';
-        } else {
-            employeesSection.style.display = 'none';
-        }
-    });
+    function scheduleTrain() {
+        setInterval(() => {
+            tracks.forEach(track => {
+                const trains = track.querySelectorAll('.train');
+                trains.forEach(train => {
+                    moveTrain(train, track);
+                });
+            });
+        }, 5 * 60 * 1000); // Move every 5 minutes
+    }
 
-    // Start Train Button
-    const startTrainBtn = document.getElementById('start-train-btn');
-    startTrainBtn.addEventListener('click', () => {
-        const track = prompt('Enter the track number:');
-        const type = prompt('Enter the train type (intermodal, coal, grain hopper, etc.):');
-        const id = prompt('Enter the train ID:');
-        if (track && type && id) {
-            alert(`Train Started:\nTrack: ${track}\nType: ${type}\nID: ${id}`);
-            // Implement train start logic here
-        }
-    });
+    function moveTrain(train, track) {
+        const trackWidth = track.offsetWidth;
+        const trainWidth = Math.floor(Math.random() * (trackWidth / 2)) + 50; // Random width between 50 and half the track width
 
-    // Add Train Button
-    const addTrainBtn = document.getElementById('add-train-btn');
-    addTrainBtn.addEventListener('click', () => {
-        const id = prompt('Enter the train ID:');
-        if (id) {
-            alert(`Train Added with ID: ${id}`);
-            // Implement add train logic here
-        }
-    });
+        // Set the train width and start the animation
+        train.style.width = `${trainWidth}px`;
+        train.style.transition = 'none'; // Disable transition to set initial position
+        train.style.transform = `translateX(-${trainWidth}px)`;
 
-    // Modal Close Handling
-    const modalCloseBtn = document.getElementById('modal-close-btn');
-    modalCloseBtn.addEventListener('click', () => {
-        closeSignalModal();
-    });
+        // Trigger reflow to apply the transform immediately
+        train.offsetHeight; 
 
-    // Modal Signal Button Handling
-    const modalSignalButtons = document.querySelectorAll('.modal-signal-button');
-    modalSignalButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const color = button.getAttribute('data-color');
-            updateSignals(color);
-            closeSignalModal();
-        });
-    });
+        train.style.transition = `transform ${trackWidth / 200}s linear`; // Adjust duration based on track width
+        train.style.transform = `translateX(${trackWidth}px)`;
+
+        // Reset the train position and width after it leaves the track
+        setTimeout(() => {
+            train.style.width = '0';
+            train.style.transform = `translateX(-100%)`;
+        }, (trackWidth / 200) * 1000); // Match the animation duration
+    }
+
+    scheduleTrain();
 });
-
-function openSignalModal(button) {
-    const color = button.getAttribute('data-color');
-    document.getElementById('modal').style.display = 'flex';
