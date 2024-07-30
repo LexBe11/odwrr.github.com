@@ -1,119 +1,28 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
-    background-color: #000;
-    color: #fff;
-}
-
-#signals-menu {
-    margin-bottom: 20px;
-}
-
-.signal-button {
-    background-color: #444;
-    color: #fff;
-    border: 1px solid #555;
-    border-radius: 5px;
-    padding: 10px 15px;
-    margin-right: 5px;
-    cursor: pointer;
-}
-
-.signal-button:hover {
-    background-color: #666;
-}
-
-.track-container {
-    position: relative;
-    width: 100%;
-    height: 300px;
-    border: 2px solid #fff;
-    margin-bottom: 20px;
-}
-
-.track-line {
-    position: absolute;
-    width: 100%;
-    height: 10px;
-    background-color: #666;
-}
-
-.signal-circle {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #888;
-    border: 2px solid #fff;
-}
-
-.signal-circle[data-color="green"] {
-    background-color: green;
-}
-
-.signal-circle[data-color="red"] {
-    background-color: red;
-}
-
-.signal-circle[data-color="yellow"] {
-    background-color: yellow;
-}
-
-.signal-position {
-    position: absolute;
-    bottom: 100%;
-    width: 20px;
-    height: 20px;
-}
-
-.track-line1 { top: 50px; }
-.track-line2 { top: 100px; }
-.signal-position1 { left: 10%; }
-.signal-position2 { left: 30%; }
-.signal-position3 { left: 50%; }
-.signal-position4 { left: 70%; }
-.signal-position5 { left: 90%; }
-
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: black; /* Black background to mimic ATCS */
 }
 
-.modal-content {
-    background-color: #fff;
-    color: #000;
-    padding: 20px;
-    border-radius: 5px;
+.track {
     position: relative;
-    width: 300px;
+    width: 80%;
+    height: 50px;
+    background-color: #333; /* Dark gray for track background */
+    border: 2px solid #000;
+    margin-bottom: 20px; /* Space between tracks */
+    overflow: hidden;
 }
 
-.close {
+.train {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.modal-signal-button {
-    background-color: #444;
-    color: #fff;
-    border: 1px solid #555;
-    border-radius: 5px;
-    padding: 10px;
-    margin-right: 5px;
-    cursor: pointer;
-}
-
-.modal-signal-button:hover {
-    background-color: #666;
+    height: 50px;
+    background-color: red;
+    width: 0; /* Initially invisible */
+    bottom: 0;
+    transform: translateX(-100%);
 }
