@@ -3,60 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATCS Diagram</title>
+    <title>ATCS Time Chart</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>ATCS Diagram</h1>
+    <h1>ATCS Time Chart</h1>
     
-    <!-- Main section for the diagram -->
-    <div class="diagram">
-        <div class="subdivision">
-            <h2>Great Lakes Subdivision</h2>
-            <div class="track" id="great-lakes-track1"></div>
-            <div class="signal" id="great-lakes-signal1" onclick="openSignalMenu('great-lakes-signal1')"></div>
-            <div class="signal" id="great-lakes-signal2" onclick="openSignalMenu('great-lakes-signal2')"></div>
-        </div>
-        <div class="subdivision">
-            <h2>Carther Subdivision</h2>
-            <div class="track" id="carther-track1"></div>
-            <div class="signal" id="carther-signal1" onclick="openSignalMenu('carther-signal1')"></div>
-            <div class="signal" id="carther-signal2" onclick="openSignalMenu('carther-signal2')"></div>
+    <!-- Time Chart for Train Movement -->
+    <div id="chart-container">
+        <div id="track">
+            <div id="moving-line"></div>
         </div>
     </div>
 
-    <!-- Button to toggle Employees Only Section -->
-    <button onclick="toggleVisibility()">Employees Only</button>
-
-    <!-- Employees Only Section -->
-    <div id="employees-only" class="hidden">
-        <h2>Employees Only Section</h2>
-        <button onclick="toggleSignalMenu()">Change Signal States</button>
-        <div id="signal-menu" class="hidden">
-            <h3>Select Signal State</h3>
-            <button onclick="changeSignal('clear')">Clear (Green)</button>
-            <button onclick="changeSignal('clear-to-stop')">Clear to Stop (Red)</button>
-            <button onclick="changeSignal('stop')">Stop (Red)</button>
-            <button onclick="changeSignal('slow')">Slow (Yellow)</button>
-            <button onclick="changeSignal('clear-to-slow')">Clear to Slow Down (Yellow)</button>
-            <button onclick="changeSignal('slow-down')">Slow Down (Yellow)</button>
-        </div>
-        <button onclick="changeLines()">Change Lines</button>
-        
-        <!-- Train Management Section -->
-        <h3>Manage Trains</h3>
-        <input type="text" id="train-id" placeholder="Train ID">
-        <input type="text" id="train-name" placeholder="Train Name">
-        <select id="train-category">
-            <option value="intermodal">Intermodal</option>
-            <option value="coal">Coal</option>
-            <option value="grain-hopper">Grain Hopper</option>
-            <option value="box-cars">Box Cars</option>
-            <option value="autorack">Autorack</option>
-        </select>
-        <button onclick="addTrain()">Add Train</button>
+    <div id="notifications"></div>
+    
+    <button id="toggle-signals-btn">Change Signals</button>
+    <div id="signals-menu" style="display:none;">
+        <button class="signal-button" data-color="green">Clear (Green)</button>
+        <button class="signal-button" data-color="red">Clear to Stop (Red)</button>
+        <button class="signal-button" data-color="red">Stop (Red)</button>
+        <button class="signal-button" data-color="yellow">Slow (Yellow)</button>
+        <button class="signal-button" data-color="yellow">Clear to Slow Down (Yellow)</button>
+        <button class="signal-button" data-color="yellow">Slow Down (Yellow)</button>
     </div>
-
+    
+    <button id="employees-only-btn">Employees Only</button>
+    <div id="employees-section" style="display:none;">
+        <!-- Add your employees only content here -->
+    </div>
+    
+    <button onclick="startTrain()">Start Train</button>
+    
     <script src="script.js"></script>
 </body>
 </html>
