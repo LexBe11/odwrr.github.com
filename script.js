@@ -1,73 +1,97 @@
-let selectedSignal = null;
+let currentPosition = 0;
+let movingLine = document.getElementById('moving-line');
+let notifications = document.getElementById('notifications');
+let interval;
+let trainStarted = false; // Track if the train has started
 
-function openSignalMenu(signalId) {
-    selectedSignal = signalId;
-    document.getElementById('signal-menu').classList.remove('hidden');
+// Existing functions
+
+function startTrain() {
+    clearInterval(interval); // Clear any previous intervals
+    currentPosition = 0;
+    movingLine.style.width = '5%';
+    notifications.innerHTML = '';
+    handleTrainMovement(); // Start the movement process
+    interval = setInterval(updateTrainPosition, 30000); // Update every 30 seconds
 }
 
-function changeSignal(state) {
-    if (!selectedSignal) return;
-    const signal = document.getElementById(selectedSignal);
-    
-    switch (state) {
-        case 'clear':
-            signal.className = 'signal green';
-            break;
-        case 'clear-to-stop':
-            signal.className = 'signal red';
-            break;
-        case 'stop':
-            signal.className = 'signal red';
-            break;
-        case 'slow':
-            signal.className = 'signal yellow';
-            break;
-        case 'clear-to-slow':
-            signal.className = 'signal yellow';
-            break;
-        case 'slow-down':
-            signal.className = 'signal yellow';
-            break;
-        default:
-            signal.className = 'signal grey';
-            break;
-    }
-    
-    document.getElementById('signal-menu').classList.add('hidden');
-    selectedSignal = null;
-}
+function updateTrainPosition() {
+    if (!trainStarted) return; // Ensure the train has started before updating position
 
-function changeLines() {
-    const track1 = document.getElementById('great-lakes-track1');
-    const track2 = document.getElementById('carther-track1');
+    currentPosition += 5; // Move the line by 5%
+    if (currentPosition >= 125) {
+        currentPosition = 125; // Cap at 125%
+        clearInterval(interval); // Stop when reaching end
+        notifications.innerHTML += '<div>Train has reached the end of the subdivision.</div>';
+        return;
+    }
+    movingLine.style.width = currentPosition + '%';
     
-    if (track1.style.backgroundColor === 'green') {
-        track1.style.backgroundColor = 'grey';
-    } else {
-        track1.style.backgroundColor = 'green';
+    // Trigger crossing signals and notifications
+    if (currentPosition % 10 === 0) {
+        setOffCrossingSignal(currentPosition);
     }
     
-    if (track2.style.backgroundColor === 'red') {
-        track2.style.backgroundColor = 'grey';
-    } else {
-        track2.style.backgroundColor = 'red';
+    // Notify every 5% movement
+    if (currentPosition % 5 === 0) {
+        sendNotification(`Crossing ${getCrossingId(currentPosition)} has been set off.`);
     }
 }
 
-function toggleVisibility() {
-    const section = document.getElementById('employees-only');
-    section.classList.toggle('hidden');
+function setOffCrossingSignal(position) {
+    // Function to handle crossing signal logic
+    sendNotification(`Crossing ${getCrossingId(position)} has been set off.`);
 }
 
-function addTrain() {
-    const id = document.getElementById('train-id').value.trim();
-    const name = document.getElementById('train-name').value.trim();
-    const category = document.getElementById('train-category').value.trim();
-    
-    if (id && name && category) {
-        console.log(`Train added: ID=${id}, Name=${name}, Category=${category}`);
-        alert(`Train added: ID=${id}, Name=${name}, Category=${category}`);
-    } else {
-        alert('Please fill in all fields.');
-    }
+function getCrossingId(position) {
+    // Generate crossing IDs based on position
+    let prefix = position < 100 ? '522A' : '128B';
+    return `${prefix}${position}`;
 }
+
+function sendNotification(message) {
+    notifications.innerHTML += `<div>${message}</div>`;
+}
+
+// New functions
+
+function handleTrainMovement() {
+    setTimeout(() => {
+        sendNotification('Train has started moving. Yellow signal will be on for 2 minutes.');
+        movingLine.style.backgroundColor = 'yellow';
+        trainStarted = true;
+
+        setTimeout(() => {
+            sendNotification('Yellow signal changed to Red. Train is now moving.');
+            movingLine.style.backgroundColor = 'red';
+        }, 120000); // After 2 minutes
+    }, 0);
+}
+
+// Function to toggle signals and change track colors
+function toggleSignals() {
+    const signalsMenu = document.getElementById('signals-menu');
+    signalsMenu.style.display = signalsMenu.style.display === 'none' ? 'block' : 'none';
+}
+
+// Function to update track colors
+function changeTrackColor(color) {
+    const track = document.getElementById('track');
+    track.style.backgroundColor = color;
+}
+
+// Event listeners for buttons
+document.getElementById('toggle-signals-btn').addEventListener('click', toggleSignals);
+
+const signalButtons = document.querySelectorAll('.signal-button');
+signalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const color = button.getAttribute('data-color');
+        changeTrackColor(color);
+    });
+});
+
+document.getElementById('employees-only-btn').addEventListener('click', () => {
+    const employeesSection = document.getElementById('employees-section');
+    employeesSection.style.display = employeesSection.style.display === 'none' ? 'block' : 'none';
+});
