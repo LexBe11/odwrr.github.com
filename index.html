@@ -3,21 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATCS Time Chart</title>
+    <title>ATCS Simulation</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>ATCS Time Chart</h1>
-    
-    <!-- Time Chart for Train Movement -->
-    <div id="chart-container">
-        <div id="track">
-            <div id="moving-line"></div>
+    <h1>ATCS Simulation</h1>
+
+    <!-- Track Container with Diagrams -->
+    <div id="track-container">
+        <!-- Subdivision Diagrams -->
+        <div id="subdivisions">
+            <div id="great-lakes" class="subdivision">
+                <h2>Great Lakes</h2>
+                <div class="track-section">
+                    <div class="track">
+                        <div id="moving-line"></div>
+                    </div>
+                    <div class="crossing" id="crossing-522A">Crossing 522A</div>
+                    <div class="crossing" id="crossing-576.2A">Crossing 576.2A</div>
+                    <div class="crossing" id="crossing-598.9A">Crossing 598.9A</div>
+                </div>
+            </div>
+            <div id="carther" class="subdivision">
+                <h2>Carther</h2>
+                <div class="track-section">
+                    <div class="track">
+                        <div id="moving-line-2"></div>
+                    </div>
+                    <div class="crossing" id="crossing-128B1">Crossing 128B1</div>
+                    <div class="crossing" id="crossing-128B2">Crossing 128B2</div>
+                    <div class="crossing" id="crossing-128B3">Crossing 128B3</div>
+                    <div class="crossing" id="crossing-128B4">Crossing 128B4</div>
+                    <div class="crossing" id="crossing-128B5">Crossing 128B5</div>
+                    <div class="crossing" id="crossing-128B6">Crossing 128B6</div>
+                    <div class="crossing" id="crossing-128B7">Crossing 128B7</div>
+                </div>
+            </div>
         </div>
     </div>
 
     <div id="notifications"></div>
-    
+
+    <!-- Signal and Control Buttons -->
     <button id="toggle-signals-btn">Change Signals</button>
     <div id="signals-menu" style="display:none;">
         <button class="signal-button" data-color="green">Clear (Green)</button>
@@ -27,14 +54,14 @@
         <button class="signal-button" data-color="yellow">Clear to Slow Down (Yellow)</button>
         <button class="signal-button" data-color="yellow">Slow Down (Yellow)</button>
     </div>
-    
+
     <button id="employees-only-btn">Employees Only</button>
     <div id="employees-section" style="display:none;">
-        <!-- Add your employees only content here -->
+        <!-- Add your employees-only content here -->
     </div>
-    
+
     <button onclick="startTrain()">Start Train</button>
-    
+
     <script src="script.js"></script>
 </body>
 </html>
