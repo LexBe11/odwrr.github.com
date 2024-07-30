@@ -26,7 +26,16 @@
     <!-- Employees Only Section -->
     <div id="employees-only" class="hidden">
         <h2>Employees Only Section</h2>
-        <button onclick="changeSignals()">Change Signals</button>
+        <button onclick="toggleSignalMenu()">Change Signal States</button>
+        <div id="signal-menu" class="hidden">
+            <h3>Select Signal State</h3>
+            <button onclick="changeSignal('clear')">Clear (Green)</button>
+            <button onclick="changeSignal('clear-to-stop')">Clear to Stop (Red)</button>
+            <button onclick="changeSignal('stop')">Stop (Red)</button>
+            <button onclick="changeSignal('slow')">Slow (Yellow)</button>
+            <button onclick="changeSignal('clear-to-slow')">Clear to Slow Down (Yellow)</button>
+            <button onclick="changeSignal('slow-down')">Slow Down (Yellow)</button>
+        </div>
         <button onclick="changeLines()">Change Lines</button>
         <button onclick="toggleVisibility()">Toggle Visibility</button>
         
