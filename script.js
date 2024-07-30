@@ -12,24 +12,31 @@ function changeSignal(state) {
     switch (state) {
         case 'clear':
             signal.className = 'signal green';
+            signal.textContent = 'Clear';
             break;
         case 'clear-to-stop':
             signal.className = 'signal red';
+            signal.textContent = 'Clear to Stop';
             break;
         case 'stop':
             signal.className = 'signal red';
+            signal.textContent = 'Stop';
             break;
         case 'slow':
             signal.className = 'signal yellow';
+            signal.textContent = 'Slow';
             break;
         case 'clear-to-slow':
             signal.className = 'signal yellow';
+            signal.textContent = 'Clear to Slow';
             break;
         case 'slow-down':
             signal.className = 'signal yellow';
+            signal.textContent = 'Slow Down';
             break;
         default:
             signal.className = 'signal grey';
+            signal.textContent = 'Dead';
             break;
     }
     
