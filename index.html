@@ -3,317 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ODW Railroad</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background: #333;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-        section {
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        h2 {
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        .subdivision-list, .crossing-list, .yard-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .subdivision, .crossing, .yard {
-            margin-bottom: 20px;
-        }
-        .subdivision h3, .crossing h3, .yard h3 {
-            margin: 0;
-        }
-        .subdivision p, .crossing p, .yard p {
-            margin: 5px 0;
-        }
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-        }
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: #333;
-            color: #fff;
-            padding: 10px;
-        }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
-        }
-    </style>
+    <title>ATCS Diagram</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>ODW Railroad</h1>
-        <nav>
-            <a href="#subdivisions">Subdivisions</a>
-            <a href="#mile-crossings">Mile Crossings</a>
-            <a href="#yards">Yards</a>
-        </nav>
-    </header>
+    <h1>ATCS Diagram</h1>
+    
+    <!-- Main section for the diagram -->
+    <div class="diagram">
+        <!-- Railroad tracks -->
+        <div id="track1" class="track"></div>
+        <div id="track2" class="track"></div>
+        
+        <!-- Yard switcher -->
+        <div id="switch1" class="switch"></div>
+        
+        <!-- Signals -->
+        <div id="signal1" class="signal green"></div>
+        <div id="signal2" class="signal red"></div>
+    </div>
 
-    <section id="subdivisions">
-        <div class="container">
-            <h2>Subdivisions</h2>
-            <ul class="subdivision-list">
-                <li class="subdivision">
-                    <h3>Maple Leaf Subdivision</h3>
-                    <p><strong>Location:</strong> Eastern Canada</p>
-                    <p><strong>Description:</strong> A scenic region with vibrant maple forests and charming small towns.</p>
-                </li>
-                <li class="subdivision">
-                    <h3>Great Lakes Subdivision</h3>
-                    <p><strong>Location:</strong> Southern Ontario</p>
-                    <p><strong>Description:</strong> This area includes the stunning Great Lakes, with a mix of industrial ports and recreational areas.</p>
-                </li>
-                <li class="subdivision">
-                    <h3>Golden Fields Subdivision</h3>
-                    <p><strong>Location:</strong> Prairie Provinces</p>
-                    <p><strong>Description:</strong> Known for its expansive golden fields and agricultural output.</p>
-                </li>
-                <li class="subdivision">
-                    <h3>Rocky Heights Subdivision</h3>
-                    <p><strong>Location:</strong> Western Mountains</p>
-                    <p><strong>Description:</strong> A mountainous region with rugged terrain and beautiful alpine scenery.</p>
-                </li>
-                <li class="subdivision">
-                    <h3>Emerald Valley Subdivision</h3>
-                    <p><strong>Location:</strong> Central Canada</p>
-                    <p><strong>Description:</strong> Featuring lush valleys and winding rivers, this region is a hub for outdoor activities.</p>
-                </li>
-            </ul>
-        </div>
-    </section>
+    <!-- Employees Only Section -->
+    <div id="employees-only" class="hidden">
+        <h2>Employees Only Section</h2>
+        <button onclick="changeSignals()">Change Signals</button>
+        <button onclick="changeLines()">Change Lines</button>
+        <button onclick="toggleVisibility()">Toggle Visibility</button>
+        
+        <!-- Train Management Section -->
+        <h3>Manage Trains</h3>
+        <form id="train-form">
+            <label for="train-id">Train ID:</label>
+            <input type="text" id="train-id" required>
+            <label for="train-name">Train Name:</label>
+            <input type="text" id="train-name" required>
+            <label for="train-category">Category:</label>
+            <select id="train-category">
+                <option value="intermodal">Intermodal</option>
+                <option value="coal">Coal</option>
+                <option value="grain-hopper">Grain Hopper</option>
+                <option value="box-cars">Box Cars</option>
+                <option value="autorack">Autorack</option>
+            </select>
+            <button type="button" onclick="addTrain()">Add Train</button>
+        </form>
 
-    <section id="mile-crossings">
-        <div class="container">
-            <h2>Mile Crossings</h2>
-            <ul class="crossing-list">
-                <li class="crossing">
-                    <h3>Redwood Forest Crossing (Mile 5)</h3>
-                    <p>Nestled in a dense redwood forest, this crossing is popular for its towering trees and tranquil environment.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Blue Ridge Crossing (Mile 10)</h3>
-                    <p>A scenic crossing in the Blue Ridge Mountains, known for its stunning views and challenging terrain.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Sunflower Field Crossing (Mile 15)</h3>
-                    <p>This crossing runs through vast sunflower fields, providing a vibrant and colorful landscape.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Silver Creek Crossing (Mile 20)</h3>
-                    <p>Located near a shimmering creek, this crossing is a favorite for local wildlife enthusiasts and anglers.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Golden Prairie Crossing (Mile 25)</h3>
-                    <p>Spanning the golden fields of the prairie, this crossing is critical for transporting agricultural produce.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Emerald Bay Crossing (Mile 30)</h3>
-                    <p>Overlooking a stunning emerald bay, this crossing handles both freight and passenger traffic with beautiful seaside views.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Buffalo Plains Crossing (Mile 35)</h3>
-                    <p>Known for its proximity to roaming buffalo herds, this crossing captures the spirit of the wild prairies.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Ironwood Crossing (Mile 40)</h3>
-                    <p>Deep within a forest of ironwood trees, this crossing supports the lumber industry and eco-tourism.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Sand Dunes Crossing (Mile 45)</h3>
-                    <p>A unique crossing amidst rolling sand dunes, offering a dramatic desert landscape.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Highland Meadows Crossing (Mile 50)</h3>
-                    <p>This crossing provides sweeping views of lush highland meadows and grazing livestock.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Copper Ridge Crossing (Mile 55)</h3>
-                    <p>Named for the copper deposits in the area, this crossing is essential for mining operations.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Crystal Lake Crossing (Mile 60)</h3>
-                    <p>Situated near a pristine crystal-clear lake, this crossing is popular among vacationers and nature lovers.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Tundra Crossing (Mile 65)</h3>
-                    <p>Spanning the remote tundra regions, this crossing supports cold-weather freight and research expeditions.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Maple Valley Crossing (Mile 70)</h3>
-                    <p>A picturesque crossing in a valley filled with maple trees, known for its vibrant fall colors.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Aurora Crossing (Mile 75)</h3>
-                    <p>This northern crossing offers views of the aurora borealis, attracting photographers and travelers.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Sequoia Crossing (Mile 80)</h3>
-                    <p>Passing through a forest of giant sequoia trees, this crossing is a marvel of natural beauty.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Grasslands Crossing (Mile 85)</h3>
-                    <p>Located in vast grasslands, this crossing is vital for transporting livestock and agricultural products.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Limestone Ridge Crossing (Mile 90)</h3>
-                    <p>This crossing navigates through a region rich in limestone, supporting quarrying and construction industries.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Canyon View Crossing (Mile 95)</h3>
-                    <p>Offering breathtaking views of a deep canyon, this crossing is popular among tourists and hikers.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Pine Barrens Crossing (Mile 100)</h3>
-                    <p>A remote crossing in the dense pine barrens, known for its unique ecosystem and wildlife.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Huckleberry Hill Crossing (Mile 105)</h3>
-                    <p>This crossing runs through huckleberry-filled hills, a favorite for local berry pickers.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Glacier Pass Crossing (Mile 110)</h3>
-                    <p>High in the mountains, this crossing offers views of ancient glaciers and ice fields.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Bayou Crossing (Mile 115)</h3>
-                    <p>Situated in the heart of the bayou, this crossing is essential for the local fishing and shrimping industries.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Copper Canyon Crossing (Mile 120)</h3>
-                    <p>Known for its striking copper-colored cliffs, this crossing supports mineral transport and tourism.</p>
-                </li>
-                <li class="crossing">
-                    <h3>Verdant Valley Crossing (Mile 125)</h3>
-                    <p>A lush, green valley crossing, essential for agricultural transport and scenic tours.</p>
-                </li>
-            </ul>
-        </div>
-    </section>
+        <h4>Trains</h4>
+        <ul id="train-list"></ul>
+    </div>
 
-    <section id="yards">
-        <div class="container">
-            <h2>Yard Names Across the Line</h2>
-            <ul class="yard-list">
-                <li class="yard">
-                    <h3>Northern Pines Yard</h3>
-                    <p><strong>Subdivision:</strong> Maple Leaf Subdivision</p>
-                    <p><strong>Location:</strong> Near Mile 20</p>
-                    <p><strong>Description:</strong> A bustling yard surrounded by pine forests, handling both freight and passenger trains.</p>
-                </li>
-                <li class="yard">
-                    <h3>Lakeview Yard</h3>
-                    <p><strong>Subdivision:</strong> Great Lakes Subdivision</p>
-                    <p><strong>Location:</strong> Near Mile 50</p>
-                    <p><strong>Description:</strong> Located by a picturesque lake, this yard is a key hub for transporting goods from the lakeside industries.</p>
-                </li>
-                <li class="yard">
-                    <h3>Prairie Winds Yard</h3>
-                    <p><strong>Subdivision:</strong> Golden Fields Subdivision</p>
-                    <p><strong>Location:</strong> Near Mile 75</p>
-                    <p><strong>Description:</strong> Situated in the vast prairies, this yard services agricultural products and livestock.</p>
-                </li>
-                <li class="yard">
-                    <h3>Mountain Ridge Yard</h3>
-                    <p><strong>Subdivision:</strong> Rocky Heights Subdivision</p>
-                    <p><strong>Location:</strong> Near Mile 100</p>
-                    <p><strong>Description:</strong> A critical yard in the mountainous region, known for its challenging terrain and scenic views.</p>
-                </li>
-                <li class="yard">
-                    <h3>Riverbend Yard</h3>
-                    <p><strong>Subdivision:</strong> Emerald Valley Subdivision</p>
-                    <p><strong>Location:</strong> Near Mile 130</p>
-                    <p><strong>Description:</strong> Nestled by a winding river, this yard supports both local industries and recreational areas.</p>
-                </li>
-                <li class="yard">
-                    <h3>Maple Grove Yard</h3>
-                    <p><strong>Subdivision:</strong> Maple Leaf Subdivision</p>
-                    <p><strong>Location:</strong> Near Mile 10</p>
-                    <p><strong>Description:</strong> A smaller yard primarily focused on the timber industry, surrounded by vibrant maple forests.</p>
-                </li>
-                <li class="yard">
-                    <h3>Cedar Hills Yard</h3>
-                    <p><strong>Subdivision:</strong> Timberline Subdivision</p>
-                    <p><strong>Location:</strong> Near Mile 35</p>
-                    <p><strong>Description:</strong> Known for its cedar wood processing, this yard is vital for the lumber industry.</p>
-                </li>
-                <li class="yard">
-                    <h3>Silver Plains Yard</h3>
-                    <p><strong>Subdivision:</strong> Prairie Heartland Subdivision</p>
-                    <p><strong>Location:</strong> Near Mile 60</p>
-                    <p><strong>Description:</strong> A central yard in the prairie region, handling various agricultural products and machinery.</p>
-                </li>
-                <li class="yard">
-                    <h3>Glacier Bay Yard</h3>
-                    <p><strong>Subdivision:</strong> Northern Lights Subdivision</p>
-                    <p><strong>Location:</strong> Near Mile 90</p>
-                    <p><strong>Description:</strong> Located near a glacier, this yard is crucial for transporting cold-weather supplies and research equipment.</p>
-                </li>
-                <li class="yard">
-                    <h3>Sunset Ridge Yard</h3>
-                    <p><strong>Subdivision:</strong> Western Trails Subdivision</p>
-                    <p><strong>Location:</strong> Near Mile 115</p>
-                    <p><strong>Description:</strong> Offering stunning sunset views, this yard services both freight and passenger trains in the western region.</p>
-                </li>
-                <li class="yard">
-                    <h3>Thunder Creek Yard</h3>
-                    <p><strong>Subdivision:</strong> Stormy Plains Subdivision</p>
-                    <p><strong>Location:</strong> Near Mile 140</p>
-                    <p><strong>Description:</strong> A robust yard designed to withstand harsh weather conditions, critical for transporting storm supplies.</p>
-                </li>
-                <li class="yard">
-                    <h3>Aurora Borealis Yard</h3>
-                    <p><strong>Subdivision:</strong> Northern Lights Subdivision</p>
-                    <p><strong>Location:</strong> Near Mile 25</p>
-                    <p><strong>Description:</strong> Known for its stunning views of the northern lights, this yard is a popular spot for both freight and scenic tours.</p>
-                </li>
-                <li class="yard">
-                    <h3>Copper Basin Yard</h3>
-                    <p><strong>Subdivision:</strong> Mineral Ridge Subdivision</p>
-                    <p><strong>Location:</strong> Near Mile 55</p>
-                    <p><strong>Description:</strong> A yard focused on mineral transport, particularly copper from the nearby mining operations.</p>
-                </li>
-                <li class="yard">
-                    <h3>Crystal Waters Yard</h3>
-                    <p><strong>Subdivision:</strong> Glacier Bay Subdivision</p>
-                    <p><strong>Location:</strong> Near Mile 85</p>
-                    <p><strong>Description:</strong> This yard supports tourism and recreational activities around the crystal-clear glacier waters.</p>
-                </li>
-                <li class="yard">
-                    <h3>Tundra Passage Yard</h3>
-                    <p><strong>Subdivision:</strong> Arctic Frontier Subdivision</p>
-                    <p><strong>Location:</strong> Near Mile 120</p>
-                    <p><strong>Description:</strong> Located in the remote tundra, this yard is essential for transporting supplies to and from the arctic regions.</p>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2024 ODW Railroad. All rights reserved.</p>
-    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
