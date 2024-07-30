@@ -11,16 +11,18 @@
     
     <!-- Main section for the diagram -->
     <div class="diagram">
-        <!-- Railroad tracks -->
-        <div id="track1" class="track"></div>
-        <div id="track2" class="track"></div>
-        
-        <!-- Yard switcher -->
-        <div id="switch1" class="switch"></div>
-        
-        <!-- Signals -->
-        <div id="signal1" class="signal grey" onclick="openSignalMenu('signal1')"></div>
-        <div id="signal2" class="signal grey" onclick="openSignalMenu('signal2')"></div>
+        <div class="subdivision">
+            <h2>Great Lakes Subdivision</h2>
+            <div class="track" id="great-lakes-track1"></div>
+            <div class="signal" id="great-lakes-signal1" onclick="openSignalMenu('great-lakes-signal1')"></div>
+            <div class="signal" id="great-lakes-signal2" onclick="openSignalMenu('great-lakes-signal2')"></div>
+        </div>
+        <div class="subdivision">
+            <h2>Carther Subdivision</h2>
+            <div class="track" id="carther-track1"></div>
+            <div class="signal" id="carther-signal1" onclick="openSignalMenu('carther-signal1')"></div>
+            <div class="signal" id="carther-signal2" onclick="openSignalMenu('carther-signal2')"></div>
+        </div>
     </div>
 
     <!-- Button to toggle Employees Only Section -->
