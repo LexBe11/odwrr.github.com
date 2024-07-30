@@ -4,59 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signal Controls</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #000;
-            color: #fff;
-        }
-        .track-container {
-            position: relative;
-            width: 100%;
-            height: 300px;
-            border: 2px solid #fff;
-            margin-bottom: 20px;
-        }
-        .track-line {
-            position: absolute;
-            width: 100%;
-            height: 10px;
-            background-color: #666;
-        }
-        .signal-circle {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: #888;
-            border: 2px solid #fff;
-        }
-        .signal-circle[data-color="green"] {
-            background-color: green;
-        }
-        .signal-circle[data-color="red"] {
-            background-color: red;
-        }
-        .signal-circle[data-color="yellow"] {
-            background-color: yellow;
-        }
-        .signal-position {
-            position: absolute;
-            bottom: 100%;
-            width: 20px;
-            height: 20px;
-        }
-        .track-line1 { top: 50px; }
-        .track-line2 { top: 100px; }
-        .track-line3 { top: 150px; }
-        .signal-position1 { left: 10%; }
-        .signal-position2 { left: 30%; }
-        .signal-position3 { left: 50%; }
-        .signal-position4 { left: 70%; }
-        .signal-position5 { left: 90%; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Signal Controls</h1>
@@ -93,10 +41,11 @@
     <!-- Control Buttons -->
     <button id="employees-only-btn">Employees Only</button>
     <div id="employees-section" style="display:none;">
-        <!-- Add your employees-only content here -->
+        <h2>Employees Only Section</h2>
+        <button id="start-train-btn">Start Train</button>
+        <!-- Add more employees-only content here -->
     </div>
 
-    <!-- Add your JavaScript file here -->
     <script src="script.js"></script>
 </body>
 </html>
