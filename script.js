@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
     const tracks = document.querySelectorAll('.track');
     const startTrainBtn = document.getElementById('startTrainBtn');
+    let trainInterval;
+    let redLineInterval;
 
     function scheduleTrain() {
-        // Set trains to start every 5 minutes after the first click
-        setInterval(() => {
+        if (trainInterval) clearInterval(trainInterval); // Clear previous interval
+        trainInterval = setInterval(() => {
             tracks.forEach(track => {
                 const trains = track.querySelectorAll('.train');
                 trains.forEach(train => {
@@ -36,8 +38,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }, (trackWidth / 200) * 1000); // Match the animation duration
     }
 
-    // Handle button click to start trains
+    function moveRedLine() {
+        tracks.forEach(track => {
+            const trackWidth = track.offsetWidth;
+            const redLine = track.querySelector('.red-line');
+            let movedDistance = 0;
+            
+            // Calculate movement step based on 18% of track width
+            const movementStep = trackWidth * 0.18;
+            
+            if (redLineInterval) clearInterval(redLineInterval); // Clear previous interval
+
+            redLineInterval = setInterval(() => {
+                movedDistance += movementStep;
+                if (movedDistance >= trackWidth) {
+                    movedDistance = 0; // Reset to start position if end is reached
+                }
+                redLine.style.transform = `translateX(${movedDistance}px)`;
+            }, 15 * 60 * 1000); // Move every 15 minutes
+        });
+    }
+
+    // Handle button click to start trains and red line movement
     startTrainBtn.addEventListener('click', () => {
         scheduleTrain();
+        moveRedLine();
     });
 });
