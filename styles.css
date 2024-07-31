@@ -1,43 +1,22 @@
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: black; /* Black background to mimic ATCS */
-}
-
-button {
-    margin: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: white;
-    background-color: #007BFF;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
 .track {
     position: relative;
-    width: 80%;
-    height: 50px;
-    background-color: #333; /* Dark gray for track background */
-    border: 2px solid #000;
-    margin-bottom: 20px; /* Space between tracks */
+    width: 100%;
+    height: 50px; /* Adjust as needed */
     overflow: hidden;
+    border: 1px solid #000; /* Optional for better visualization */
 }
 
 .train {
     position: absolute;
-    height: 50px;
-    background-color: red;
-    width: 0; /* Initially invisible */
-    bottom: 0;
-    transform: translateX(-100%);
+    height: 50px; /* Adjust as needed */
+    background: blue; /* Change to your train color */
+}
+
+.red-line {
+    position: absolute;
+    height: 2px; /* Thickness of the red line */
+    background: red;
+    top: 0;
+    left: 0;
+    transition: transform 0.5s linear; /* Adjust transition as needed */
 }
